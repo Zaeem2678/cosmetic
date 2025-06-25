@@ -1,132 +1,190 @@
-import { Grid, Container, Typography, Box, Pagination } from "@mui/material";
-import { Card, CardMedia, CardContent, Button } from "@mui/material";
+import { Grid, Container, Typography, Box, Button } from "@mui/material";
+import { Card, CardMedia, CardContent } from "@mui/material";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import ModalDialog from "./ModalDialog";
 import { useState } from "react";
 
 const products = [
   {
-    image:
-      "https://plus.unsplash.com/premium_photo-1677526496597-aa0f49053ce2?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bWFrZXVwJTIwcHJvZHVjdHN8ZW58MHx8MHx8fDA%3D",
+    id: 1,
+    categoryName: "Lipsticks",
+    image: "https://plus.unsplash.com/premium_photo-1677526496597-aa0f49053ce2",
     title: "Matte Lipstick",
-    description:
-      "Experience intense color payoff with our Matte Lipstick, designed for all-day wear without drying out your lips. This lipstick glides on smoothly and sets to a velvety finish that resists smudging and feathering. Infused with nourishing ingredients, it not only enhances your look but also keeps your lips hydrated and soft. Perfect for both bold and everyday styles.",
+    description: "Experience intense color payoff with our Matte Lipstick...",
   },
   {
-    image:
-      "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y29zbWV0aWN8ZW58MHx8MHx8fDA%3D",
+    id: 2,
+    categoryName: "Skincare",
+    image: "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937",
     title: "Organic Face Cream",
-    description:
-      "Our Organic Face Cream is a luxurious blend of nature’s best ingredients, formulated to deeply moisturize and rejuvenate your skin. Rich in antioxidants and essential oils, it helps reduce signs of aging, evens skin tone, and restores a radiant glow. Perfect for sensitive and dry skin types, this cream absorbs quickly without leaving a greasy residue.",
+    description: "Our Organic Face Cream is a luxurious blend of nature...",
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_photo-1661769021743-7139c6fc4ab9?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmVhdXR5JTIwcHJvZHVjdHxlbnwwfHwwfHx8MA%3D%3D",
+    id: 3,
+    categoryName: "Eyeshadow",
+    image: "https://plus.unsplash.com/premium_photo-1661769021743-7139c6fc4ab9",
     title: "Nude Eyeshadow Palette",
-    description:
-      "Elevate your makeup game with our Nude Eyeshadow Palette featuring 12 versatile shades ranging from soft mattes to shimmering highlights. This palette is ideal for creating subtle daytime looks or bold evening styles. With a highly pigmented and blendable formula, it ensures smooth application and long-lasting wear for every skin tone.",
+    description: "Elevate your makeup game with our Nude Eyeshadow Palette...",
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_photo-1677526496597-aa0f49053ce2?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bWFrZXVwJTIwcHJvZHVjdHN8ZW58MHx8MHx8fDA%3D",
+    id: 4,
+    categoryName: "Lipsticks",
+    image: "https://plus.unsplash.com/premium_photo-1677526496597-aa0f49053ce2",
     title: "Matte Lipstick",
-    description:
-      "Experience intense color payoff with our Matte Lipstick, designed for all-day wear without drying out your lips. This lipstick glides on smoothly and sets to a velvety finish that resists smudging and feathering. Infused with nourishing ingredients, it not only enhances your look but also keeps your lips hydrated and soft. Perfect for both bold and everyday styles.",
+    description: "Experience intense color payoff with our Matte Lipstick...",
   },
   {
-    image:
-      "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y29zbWV0aWN8ZW58MHx8MHx8fDA%3D",
+    id: 5,
+    categoryName: "Skincare",
+    image: "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937",
     title: "Organic Face Cream",
-    description:
-      "Our Organic Face Cream is a luxurious blend of nature’s best ingredients, formulated to deeply moisturize and rejuvenate your skin. Rich in antioxidants and essential oils, it helps reduce signs of aging, evens skin tone, and restores a radiant glow. Perfect for sensitive and dry skin types, this cream absorbs quickly without leaving a greasy residue.",
+    description: "Our Organic Face Cream is a luxurious blend of nature...",
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_photo-1661769021743-7139c6fc4ab9?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmVhdXR5JTIwcHJvZHVjdHxlbnwwfHwwfHx8MA%3D%3D",
+    id: 6,
+    categoryName: "Eyeshadow",
+    image: "https://plus.unsplash.com/premium_photo-1661769021743-7139c6fc4ab9",
     title: "Nude Eyeshadow Palette",
-    description:
-      "Elevate your makeup game with our Nude Eyeshadow Palette featuring 12 versatile shades ranging from soft mattes to shimmering highlights. This palette is ideal for creating subtle daytime looks or bold evening styles. With a highly pigmented and blendable formula, it ensures smooth application and long-lasting wear for every skin tone.",
+    description: "Elevate your makeup game with our Nude Eyeshadow Palette...",
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_photo-1677526496597-aa0f49053ce2?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bWFrZXVwJTIwcHJvZHVjdHN8ZW58MHx8MHx8fDA%3D",
+    id: 7,
+    categoryName: "Lipsticks",
+    image: "https://plus.unsplash.com/premium_photo-1677526496597-aa0f49053ce2",
     title: "Matte Lipstick",
-    description:
-      "Experience intense color payoff with our Matte Lipstick, designed for all-day wear without drying out your lips. This lipstick glides on smoothly and sets to a velvety finish that resists smudging and feathering. Infused with nourishing ingredients, it not only enhances your look but also keeps your lips hydrated and soft. Perfect for both bold and everyday styles.",
+    description: "Experience intense color payoff with our Matte Lipstick...",
   },
   {
-    image:
-      "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y29zbWV0aWN8ZW58MHx8MHx8fDA%3D",
+    id: 8,
+    categoryName: "Skincare",
+    image: "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937",
     title: "Organic Face Cream",
-    description:
-      "Our Organic Face Cream is a luxurious blend of nature’s best ingredients, formulated to deeply moisturize and rejuvenate your skin. Rich in antioxidants and essential oils, it helps reduce signs of aging, evens skin tone, and restores a radiant glow. Perfect for sensitive and dry skin types, this cream absorbs quickly without leaving a greasy residue.",
+    description: "Our Organic Face Cream is a luxurious blend of nature...",
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_photo-1661769021743-7139c6fc4ab9?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmVhdXR5JTIwcHJvZHVjdHxlbnwwfHwwfHx8MA%3D%3D",
+    id: 9,
+    categoryName: "Eyeshadow",
+    image: "https://plus.unsplash.com/premium_photo-1661769021743-7139c6fc4ab9",
     title: "Nude Eyeshadow Palette",
-    description:
-      "Elevate your makeup game with our Nude Eyeshadow Palette featuring 12 versatile shades ranging from soft mattes to shimmering highlights. This palette is ideal for creating subtle daytime looks or bold evening styles. With a highly pigmented and blendable formula, it ensures smooth application and long-lasting wear for every skin tone.",
+    description: "Elevate your makeup game with our Nude Eyeshadow Palette...",
   },
-  // Add more as needed
+  {
+    id: 10,
+    categoryName: "Lipsticks",
+    image: "https://plus.unsplash.com/premium_photo-1677526496597-aa0f49053ce2",
+    title: "Matte Lipstick",
+    description: "Experience intense color payoff with our Matte Lipstick...",
+  },
+  {
+    id: 11,
+    categoryName: "Skincare",
+    image: "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937",
+    title: "Organic Face Cream",
+    description: "Our Organic Face Cream is a luxurious blend of nature...",
+  },
+  {
+    id: 12,
+    categoryName: "Eyeshadow",
+    image: "https://plus.unsplash.com/premium_photo-1661769021743-7139c6fc4ab9",
+    title: "Nude Eyeshadow Palette",
+    description: "Elevate your makeup game with our Nude Eyeshadow Palette...",
+  },
+  // Add more with appropriate categories...
 ];
 
-const PRODUCTS_PER_PAGE = 6;
+const categories = ["All", "Lipsticks", "Skincare", "Eyeshadow"];
+const ITEMS_PER_LOAD = 6;
 
 export default function Products() {
-  const [page, setPage] = useState(1);
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [visibleCount, setVisibleCount] = useState(ITEMS_PER_LOAD);
 
-  const handleChange = (event, value) => {
-    setPage(value);
+  const filteredProducts =
+    selectedCategory === "All"
+      ? products
+      : products.filter((p) => p.categoryName === selectedCategory);
+
+  const visibleProducts = filteredProducts.slice(0, visibleCount);
+
+  const handleLoadMore = () => {
+    setVisibleCount((prev) => prev + ITEMS_PER_LOAD);
   };
 
-  const startIndex = (page - 1) * PRODUCTS_PER_PAGE;
-  const paginatedProducts = products.slice(
-    startIndex,
-    startIndex + PRODUCTS_PER_PAGE
-  );
-
-  const totalPages = Math.ceil(products.length / PRODUCTS_PER_PAGE);
+  const handleCategoryClick = (cat) => {
+    setSelectedCategory(cat);
+    setVisibleCount(ITEMS_PER_LOAD); // Reset visible count when switching category
+  };
 
   return (
-    <>
-      <Container
+    <Container
+      sx={{
+        marginLeft: { md: 11, xs: "none" },
+        mt: 4,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "column",
+      }}
+    >
+      <Typography
+        variant="h4"
+        sx={{ mb: "30px", fontWeight: "bold" }}
+        gutterBottom
+      >
+        Our Products
+      </Typography>
+
+      {/* Category Filters */}
+      <Box
         sx={{
-          marginLeft: { md: 30, xs: "none" },
-          mt: 4,
+          mb: 4,
           display: "flex",
-          alignItems: "center",
+          gap: 2,
+          flexWrap: "wrap",
           justifyContent: "center",
-          flexDirection: "column",
         }}
       >
-        <Typography
-          variant="h4"
-          sx={{ mb: "40px", fontWeight: "bold" }}
-          gutterBottom
-        >
-          Our Products
-        </Typography>
+        {categories.map((cat) => (
+          <Button
+            key={cat}
+            variant={selectedCategory === cat ? "contained" : "outlined"}
+            onClick={() => handleCategoryClick(cat)}
+          >
+            {cat}
+          </Button>
+        ))}
+      </Box>
 
-        <Grid container spacing={9}>
-          {paginatedProducts.map((product, index) => (
-            <Grid item key={index} xs={12} sm={6} md={4}>
-              <ProductCard {...product} />
-            </Grid>
-          ))}
-        </Grid>
+      <Grid
+        container
+        spacing={5}
+        sx={{
+          marginLeft: { md: 10, xs: "none" },
+        }}
+      >
+        {visibleProducts.map((product, index) => (
+          <Grid
+            item
+            key={index}
+            xs={12}
+            sm={6}
+            md={4}
+            justifyContent={"center"}
+          >
+            <ProductCard {...product} />
+          </Grid>
+        ))}
+      </Grid>
 
+      {/* Load More Button */}
+      {visibleCount < filteredProducts.length && (
         <Box sx={{ mt: 4 }}>
-          <Pagination
-            count={totalPages}
-            page={page}
-            onChange={handleChange}
-            color="primary"
-            shape="rounded"
-          />
+          <Button variant="outlined" onClick={handleLoadMore}>
+            Load More
+          </Button>
         </Box>
-      </Container>
-    </>
+      )}
+    </Container>
   );
 }
 
@@ -134,17 +192,22 @@ function ProductCard({ image, title, description }) {
   const [open, setOpen] = useState(false);
   const product = { image, title, description };
 
-  function handleOpen() {
-    setOpen(true);
-  }
-
-  function handleClose() {
-    setOpen(false);
-  }
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <>
-      <Card sx={{ width: { xs: "100%", md: "300px", height: "340px" } }}>
+      <Card
+        sx={{
+          width: { xs: "100%", md: "300px" },
+          height: "340px",
+          transition: "transform 0.3s, box-shadow 0.3s",
+          "&:hover": {
+            boxShadow: 9,
+            transform: "translateY(-5px)",
+          },
+        }}
+      >
         <CardMedia
           component="img"
           height="200"

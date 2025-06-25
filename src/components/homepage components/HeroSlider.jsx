@@ -4,9 +4,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const images = [
-  "https://images.pexels.com/photos/1377034/pexels-photo-1377034.jpeg",
-  "https://images.pexels.com/photos/11309261/pexels-photo-11309261.jpeg", // woman applying lipstick
-  "https://images.pexels.com/photos/6877427/pexels-photo-6877427.jpeg", // skincare & perfume layout
+  "./lipstick.jpg",
+  "./lipstick2.jpg", // woman applying lipstick
+  "./lipstick3.jpg", // skincare & perfume layout
 ];
 
 const settings = {
@@ -35,7 +35,6 @@ export default function HeroSlider() {
               src={img}
               alt={`Slide ${index}`}
               style={{
-                width: "100%",
                 width: "100%",
                 height: "70vh",
                 objectFit: "cover",

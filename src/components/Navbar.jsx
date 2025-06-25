@@ -13,6 +13,8 @@ import {
   Divider,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import SearchIcon from "@mui/icons-material/Search";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Link } from "react-router-dom";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
@@ -37,13 +39,19 @@ export default function Navbar() {
           bgcolor: "secondary.main",
           color: "text.primary",
           px: 2,
+          boxShadow: "none",
+          borderBottom: "none",
         }}
       >
         <Toolbar sx={{ justifyContent: "space-between" }}>
           {/* Logo */}
-          <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-            Cosmetics Store
-          </Typography>
+          <Link to="/" style={{ display: "flex", alignItems: "center" }}>
+            <img
+              style={{ height: "70px", width: "70px", cursor: "pointer" }}
+              src="https://rivaj-uk.com/cdn/shop/files/logo-01-8.svg?v=1710403052&width=200"
+              alt="logo"
+            />
+          </Link>
 
           {/* Desktop Nav */}
           {!isMobile && (
@@ -69,16 +77,26 @@ export default function Navbar() {
             </Box>
           )}
 
-          {/* Mobile Nav Button */}
-          {isMobile && (
-            <IconButton
-              edge="end"
-              onClick={() => setDrawerOpen(true)}
-              sx={{ color: "text.primary" }}
-            >
-              <MenuIcon />
+          {/* Right Side Icons */}
+          <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+            <IconButton sx={{ color: "text.primary" }}>
+              <SearchIcon />
             </IconButton>
-          )}
+            <IconButton sx={{ color: "text.primary" }}>
+              <AccountCircleIcon />
+            </IconButton>
+
+            {/* Mobile Menu Icon */}
+            {isMobile && (
+              <IconButton
+                edge="end"
+                onClick={() => setDrawerOpen(true)}
+                sx={{ color: "text.primary" }}
+              >
+                <MenuIcon />
+              </IconButton>
+            )}
+          </Box>
         </Toolbar>
       </AppBar>
 
