@@ -1,10 +1,69 @@
-import { Box, Typography, Divider, TextField, Button } from "@mui/material";
-import PageNavigation from "../components/pagenav/PageNavigation";
+import { useState } from "react";
+import axios from "axios";
+import {
+  Box,
+  Typography,
+  Divider,
+  TextField,
+  Button,
+} from "@mui/material";
 
+
+import PageNavigation from "../components/pagenav/PageNavigation";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal)
 export default function Contact() {
+  const [ isSubmitted, setIsSubmitted ] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+ 
+  };
+
+  const handleSubmit = async () => {
+
+     
+    try {
+      setIsSubmitted(true);
+      const res = await axios.post("http://localhost:4000/api/contactUs/mailingService", formData);
+      //alert(res.data.message);
+       MySwal.fire({
+        title:'Contact Us',
+        text:res?.data?.message || "Thanks for contacting us!!",
+        icon: 'success', // Can be 'success', 'error', 'warning', 'info', or 'question'
+        confirmButtonText: 'Okay',
+      });
+      setIsSubmitted(false);
+      setFormData({ name: "", email: "", subject: "", message: "" }); // reset form
+    } catch (err) {
+     setIsSubmitted(false);
+     MySwal.fire({
+        title:'Contact Us',
+        text:err.response?.data?.message || "Failed to send message",
+        icon: 'error', // Can be 'success', 'error', 'warning', 'info', or 'question'
+        confirmButtonText: 'Try Again',
+      });
+      //alert(err.response?.data?.message || "Failed to send message");
+    }
+  };
+  
+
+
+
+
   return (
     <>
       <PageNavigation title="Contact Us" subheading="contact us" />
+
       {/* Contact Info Section */}
       <Box sx={{ overflowX: "hidden" }}>
         <Box
@@ -31,17 +90,13 @@ export default function Contact() {
           <Divider
             orientation="vertical"
             flexItem
-            sx={{
-              width: "1px",
-              backgroundColor: "grey.400",
-            }}
+            sx={{ width: "1px", backgroundColor: "grey.400" }}
           />
 
           {/* Phone Section */}
           <Box sx={{ textAlign: "center" }}>
-            {/* icon can go here*/}
             <Typography variant="h6">Phone:</Typography>
-            <Typography color="text.secondary">+ 1235 2355 98</Typography>
+            <Typography color="text.secondary">+1235 2355 98</Typography>
           </Box>
 
           {/* Divider */}
@@ -57,20 +112,13 @@ export default function Contact() {
 
           {/* Email Section */}
           <Box sx={{ textAlign: "center" }}>
-            {/* icon can go here*/}
             <Typography variant="h6">Email:</Typography>
             <Typography color="text.secondary">info@yoursite.com</Typography>
           </Box>
         </Box>
 
         {/* Contact Form Section */}
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
           <Typography
             sx={{
               textAlign: "center",
@@ -78,7 +126,7 @@ export default function Contact() {
               mb: 6,
               fontSize: "26px",
               width: { xs: "400px", md: "500px" },
-              marginX: "30px",
+              mx: "30px",
             }}
             variant="h6"
             color="#333333"
@@ -91,9 +139,9 @@ export default function Contact() {
         <Box
           sx={{
             maxWidth: "850px",
-            margin: "0 auto",
-            marginBottom: 9,
-            padding: 7,
+            mx: "auto",
+            mb: 9,
+            p: 7,
             background: "#F8F9FA",
             borderRadius: 2,
           }}
@@ -101,7 +149,9 @@ export default function Contact() {
           {/* Name Field */}
           <TextField
             label="Your Name"
-            variant="outlined"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
             fullWidth
             margin="normal"
           />
@@ -109,7 +159,9 @@ export default function Contact() {
           {/* Email Field */}
           <TextField
             label="Your Email"
-            variant="outlined"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
             fullWidth
             margin="normal"
           />
@@ -117,7 +169,9 @@ export default function Contact() {
           {/* Subject Field */}
           <TextField
             label="Subject"
-            variant="outlined"
+            name="subject"
+            value={formData.subject}
+            onChange={handleChange}
             fullWidth
             margin="normal"
           />
@@ -125,7 +179,9 @@ export default function Contact() {
           {/* Message Field */}
           <TextField
             label="Message"
-            variant="outlined"
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
             fullWidth
             margin="normal"
             multiline
@@ -133,8 +189,14 @@ export default function Contact() {
           />
 
           {/* Send Button */}
-          <Button variant="contained" sx={{ mt: 2, bgcolor: "primary.main" }}>
-            Send Message
+          <Button
+            variant="contained"
+            sx={{ mt: 2, bgcolor: "primary.main" }}
+            onClick={handleSubmit}
+            disabled={isSubmitted}
+          >
+            {isSubmitted?'Sending Message...':'Send Message'}
+            
           </Button>
         </Box>
       </Box>
