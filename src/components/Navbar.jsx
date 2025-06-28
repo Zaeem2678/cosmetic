@@ -48,7 +48,7 @@ export default function Navbar() {
           <Link to="/" style={{ display: "flex", alignItems: "center" }}>
             <img
               style={{ height: "70px", width: "70px", cursor: "pointer" }}
-              src="https://rivaj-uk.com/cdn/shop/files/logo-01-8.svg?v=1710403052&width=200"
+              src="/BlueCosmetcis.png"
               alt="logo"
             />
           </Link>

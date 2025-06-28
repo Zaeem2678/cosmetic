@@ -1,14 +1,15 @@
 import {
   Card,
+  Button,
   CardContent,
   CardMedia,
   Typography,
-  Button,
   Box,
 } from "@mui/material";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import ModalDialog from "../components/homepage components/ModalDialog";
 import { useState } from "react";
+import CustomButton from "../components/CustomButton"; // Adjust path if needed
 
 export default function ProductCard({ product }) {
   const [open, setOpen] = useState(false);
@@ -53,17 +54,25 @@ export default function ProductCard({ product }) {
             {product.description}
           </Typography>
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-            <Button variant="contained" onClick={() => setOpen(true)}>
+            <CustomButton variant="text" onClick={() => setOpen(true)}>
               Read More
-            </Button>
-            <Button variant="text" href="https://wa.me/923001234567" target="_blank">
+            </CustomButton>
+            <Button
+              variant="outlined"
+              href="https://wa.me/923001234567"
+              target="_blank"
+            >
               <WhatsAppIcon />
             </Button>
           </Box>
         </CardContent>
       </Card>
 
-      <ModalDialog product={product} open={open} onClose={() => setOpen(false)} />
+      <ModalDialog
+        product={product}
+        open={open}
+        onClose={() => setOpen(false)}
+      />
     </>
   );
 }

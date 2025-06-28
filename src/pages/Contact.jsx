@@ -21,9 +21,17 @@ export default function Contact() {
           <Box sx={{ textAlign: "center" }}>
             <Typography variant="h6">Address:</Typography>
             <Typography color="text.secondary">
-              198 West 21th Street, Suite 721
+              R RUA DOM AFONSO HENRIQUES N 201 2
+             
               <br />
-              New York NY 10016
+              4435-005 RIO TINTO
+              <br />
+              PORTO, PORTUGAL{" "}
+              <img
+                src="https://flagcdn.com/w40/pt.png"
+                alt="Portugal Flag"
+                style={{ width: 20, height: 15, verticalAlign: "middle" }}
+              />
             </Typography>
           </Box>
 
@@ -41,7 +49,7 @@ export default function Contact() {
           <Box sx={{ textAlign: "center" }}>
             {/* icon can go here*/}
             <Typography variant="h6">Phone:</Typography>
-            <Typography color="text.secondary">+ 1235 2355 98</Typography>
+            <Typography color="text.secondary"> +351 920 537 449</Typography>
           </Box>
 
           {/* Divider */}
