@@ -3,13 +3,13 @@ import {
   Container,
   Typography,
   Box,
-  Button,
   CircularProgress,
 } from "@mui/material";
 import { useState, useEffect } from "react";
 import ProductCard from "../../components/ProductCard";
 import { getCategories } from "../../api/categoryAPI";
 import { getProducts } from "../../api/productAPI";
+import CustomButton from "../../components/CustomButton"; // Adjust path if needed
 
 const ITEMS_PER_LOAD = 6;
 
@@ -43,9 +43,7 @@ export default function Products() {
   const filteredProducts =
     selectedCategory === "All"
       ? products
-      : products.filter(
-          (p) => p.categoryId?.name === selectedCategory
-        );
+      : products.filter((p) => p.categoryId?.name === selectedCategory);
 
   const visibleProducts = filteredProducts.slice(0, visibleCount);
 
@@ -64,37 +62,51 @@ export default function Products() {
   }
 
   return (
-    <Container sx={{ mt: 4, display: "flex", flexDirection: "column", alignItems: "center" }}>
+    <Container
+      sx={{
+        mt: 4,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
       <Typography variant="h4" sx={{ mb: "30px", fontWeight: "bold" }}>
         Our Products
       </Typography>
 
-      <Box sx={{ mb: 4, display: "flex", gap: 2, flexWrap: "wrap", justifyContent: "center" }}>
+      <Box
+        sx={{
+          mb: 4,
+          display: "flex",
+          gap: 2,
+          flexWrap: "wrap",
+          justifyContent: "center",
+        }}
+      >
         {categories.map((cat) => (
-          <Button
+          <CustomButton
             key={cat}
             variant={selectedCategory === cat ? "contained" : "outlined"}
             onClick={() => handleCategoryClick(cat)}
           >
             {cat}
-          </Button>
+          </CustomButton>
         ))}
       </Box>
 
-     <Grid container spacing={5} sx={{ ml: { md: 10, xs: "none" } }}>
-  {visibleProducts.map((product) => (
-    <Grid item key={product._id} xs={12} sm={6} md={4}>
-      <ProductCard product={product} />
-    </Grid>
-  ))}
-</Grid>
-
+      <Grid container spacing={5} sx={{ ml: { md: 10, xs: "none" } }}>
+        {visibleProducts.map((product) => (
+          <Grid item key={product._id} xs={12} sm={6} md={4}>
+            <ProductCard product={product} />
+          </Grid>
+        ))}
+      </Grid>
 
       {visibleCount < filteredProducts.length && (
         <Box sx={{ mt: 4 }}>
-          <Button variant="outlined" onClick={handleLoadMore}>
+          <CustomButton variant="outlined" onClick={handleLoadMore}>
             Load More
-          </Button>
+          </CustomButton>
         </Box>
       )}
     </Container>
