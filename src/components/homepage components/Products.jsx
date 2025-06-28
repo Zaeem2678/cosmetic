@@ -9,7 +9,7 @@ import { useState, useEffect } from "react";
 import ProductCard from "../../components/ProductCard";
 import { getCategories } from "../../api/categoryAPI";
 import { getProducts } from "../../api/productAPI";
-import CustomButton from "../../components/CustomButton"; // Adjust path if needed
+import CustomButton from "../../components/CustomButton";
 
 const ITEMS_PER_LOAD = 6;
 
@@ -63,14 +63,16 @@ export default function Products() {
 
   return (
     <Container
+      maxWidth="lg"
       sx={{
         mt: 4,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        px: { xs: 2, sm: 3 }, // Better padding on mobile
       }}
     >
-      <Typography variant="h4" sx={{ mb: "30px", fontWeight: "bold" }}>
+      <Typography variant="h4" sx={{ mb: 4, fontWeight: "bold" }}>
         Our Products
       </Typography>
 
@@ -94,9 +96,28 @@ export default function Products() {
         ))}
       </Box>
 
-      <Grid container spacing={5} sx={{ ml: { md: 10, xs: "none" } }}>
+      {/* Updated Grid with better spacing and alignment */}
+      <Grid
+        container
+        spacing={{ xs: 2, sm: 3, md: 4 }}
+        sx={{
+          width: "100%",
+          justifyContent: "center",
+          alignItems: "stretch", // Ensures equal height cards
+        }}
+      >
         {visibleProducts.map((product) => (
-          <Grid item key={product._id} xs={12} sm={6} md={4}>
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            md={4}
+            key={product._id}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
             <ProductCard product={product} />
           </Grid>
         ))}

@@ -48,7 +48,7 @@ export default function Navbar() {
           <Link to="/" style={{ display: "flex", alignItems: "center" }}>
             <img
               style={{ height: "70px", width: "70px", cursor: "pointer" }}
-              src="/BlueCosmetcis.png"
+              src="/logo.png"
               alt="logo"
             />
           </Link>
@@ -78,14 +78,8 @@ export default function Navbar() {
           )}
 
           {/* Right Side Icons */}
-          <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-            <IconButton sx={{ color: "text.primary" }}>
-              <SearchIcon />
-            </IconButton>
-            <IconButton sx={{ color: "text.primary" }}>
-              <AccountCircleIcon />
-            </IconButton>
 
+          <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
             {/* Mobile Menu Icon */}
             {isMobile && (
               <IconButton

@@ -20,7 +20,7 @@ export default function Footer() {
               gutterBottom
               sx={{ fontWeight: "bold", color: "#fff" }}
             >
-              BlueStones
+              Stella
             </Typography>
             <Typography
               variant="body2"
@@ -97,7 +97,7 @@ export default function Footer() {
           align="center"
           sx={{ fontSize: "0.875rem", opacity: 0.6 }}
         >
-          © {new Date().getFullYear()} BlueStones. All rights reserved.
+          © {new Date().getFullYear()} Stella. All rights reserved.
         </Typography>
       </Container>
     </Box>
