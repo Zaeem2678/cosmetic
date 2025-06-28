@@ -22,7 +22,6 @@ export default function Contact() {
             <Typography variant="h6">Address:</Typography>
             <Typography color="text.secondary">
               R RUA DOM AFONSO HENRIQUES N 201 2
-             
               <br />
               4435-005 RIO TINTO
               <br />

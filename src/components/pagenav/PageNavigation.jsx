@@ -1,6 +1,5 @@
 import Container from "@mui/material/Container";
-import { Box, Typography } from "@mui/material";
-import Navbar from "../Navbar";
+import { Box, Typography } from "@mui/material";;
 import { Typewriter } from "react-simple-typewriter";
 
 export default function PageNavigation({ title, subheading }) {
