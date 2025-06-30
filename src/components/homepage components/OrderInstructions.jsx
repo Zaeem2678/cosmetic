@@ -14,7 +14,9 @@ import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 
 export default function OrderInstructions() {
   return (
-    <Box sx={{ backgroundColor: "secondary.main", marginTop:5, marginBottom:2 }}>
+    <Box
+      sx={{ backgroundColor: "secondary.main", marginTop: 5, marginBottom: 2 }}
+    >
       <Container maxWidth="md">
         <Paper elevation={3} sx={{ p: 4, borderRadius: 3 }}>
           <Typography
@@ -22,6 +24,9 @@ export default function OrderInstructions() {
             align="center"
             color="#1a1a1a"
             gutterBottom
+            sx={{
+              fontWeight: 700,
+            }}
           >
             How to Place Your Order
           </Typography>

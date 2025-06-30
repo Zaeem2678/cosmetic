@@ -16,3 +16,6 @@ html::-webkit-scrollbar,
 body::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }
+body {
+  font-family: 'Lato', sans-serif !important;
+}

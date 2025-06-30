@@ -72,7 +72,7 @@ export default function Products() {
         px: { xs: 2, sm: 3 }, // Better padding on mobile
       }}
     >
-      <Typography variant="h4" sx={{ mb: 4, fontWeight: "bold" }}>
+      <Typography variant="h4" sx={{ mb: 4,fontWeight: 700  }}>
         Our Products
       </Typography>
 

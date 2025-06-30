@@ -1,3 +1,4 @@
+// src/theme/theme.js
 import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
@@ -8,9 +9,9 @@ const theme = createTheme({
     secondary: {
       main: "#E0F7FA",
     },
-    typography: {
-      fontFamily: "Lato, sans-serif",
-    },
+  },
+  typography: {
+    fontFamily: "Poppins, Arial, sans-serif",
   },
 });
 

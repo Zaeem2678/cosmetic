@@ -13,8 +13,6 @@ import {
   Divider,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Link } from "react-router-dom";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
@@ -24,10 +22,15 @@ export default function Navbar() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
-  const navItems = [
+  const mainNavItems = [
     { text: "Home", path: "/" },
     { text: "About", path: "/about" },
     { text: "Contact", path: "/contact" },
+  ];
+
+  const allNavItems = [
+    ...mainNavItems,
+    { text: "Most Selling Products", path: "/most-selling" },
   ];
 
   return (
@@ -43,54 +46,84 @@ export default function Navbar() {
           borderBottom: "none",
         }}
       >
-        <Toolbar sx={{ justifyContent: "space-between" }}>
-          {/* Logo */}
-          <Link to="/" style={{ display: "flex", alignItems: "center" }}>
-            <img
-              style={{ height: "70px", width: "70px", cursor: "pointer" }}
-              src="/logo.png"
-              alt="logo"
-            />
-          </Link>
+        <Toolbar sx={{ justifyContent: "space-between", alignItems: "center" }}>
+          {/* Logo - Left Side */}
+          <Box sx={{ flexShrink: 0 }}>
+            <Link to="/" style={{ display: "flex", alignItems: "center" }}>
+              <img
+                style={{ height: "70px", width: "70px", cursor: "pointer" }}
+                src="/logo.png"
+                alt="logo"
+              />
+            </Link>
+          </Box>
 
-          {/* Desktop Nav */}
+          {/* Desktop Navigation */}
           {!isMobile && (
-            <Box sx={{ display: "flex", gap: 2 }}>
-              {navItems.map((item) => (
+            <>
+              {/* Center Navigation - Home, About, Contact */}
+              <Box sx={{ 
+                display: "flex", 
+                gap: 2,
+                position: "absolute",
+                left: "50%",
+                transform: "translateX(-50%)",
+              }}>
+                {mainNavItems.map((item) => (
+                  <Button
+                    key={item.text}
+                    component={Link}
+                    to={item.path}
+                    sx={{
+                      color: "text.primary",
+                      fontWeight: 500,
+                      textTransform: "none",
+                      "&:hover": {
+                        backgroundColor: "#E3F2FD",
+                        color: theme.palette.primary.main,
+                      },
+                    }}
+                  >
+                    {item.text}
+                  </Button>
+                ))}
+              </Box>
+
+              {/* Right Side - Most Selling Products */}
+              <Box sx={{ flexShrink: 0 }}>
                 <Button
-                  key={item.text}
                   component={Link}
-                  to={item.path}
+                  to="/most-selling"
                   sx={{
                     color: "text.primary",
-                    fontWeight: 500,
+                    fontWeight: 600,
                     textTransform: "none",
+                    bgcolor: "rgba(251, 165, 4, 0.1)",
+                    border: "1px solid #FBA504",
+                    borderRadius: "8px",
+                    px: 2,
                     "&:hover": {
-                      backgroundColor: "#E3F2FD",
-                      color: theme.palette.primary.main,
+                      backgroundColor: "#FBA504",
+                      color: "#fff",
                     },
                   }}
                 >
-                  {item.text}
+                  Most Selling Products
                 </Button>
-              ))}
-            </Box>
+              </Box>
+            </>
           )}
 
-          {/* Right Side Icons */}
-
-          <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-            {/* Mobile Menu Icon */}
-            {isMobile && (
-              <IconButton
-                edge="end"
-                onClick={() => setDrawerOpen(true)}
-                sx={{ color: "text.primary" }}
-              >
-                <MenuIcon />
-              </IconButton>
-            )}
-          </Box>
+          {/* Mobile Menu Icon */}
+          {isMobile && (
+            <IconButton
+              edge="end"
+              onClick={() => setDrawerOpen(true)}
+              sx={{ color: "text.primary" }}
+            >
+              <MenuIcon />
+            </IconButton>
+          )}
         </Toolbar>
       </AppBar>
 
@@ -121,7 +154,7 @@ export default function Navbar() {
           </Typography>
           <Divider />
           <List>
-            {navItems.map((item) => (
+            {allNavItems.map((item) => (
               <ListItem
                 button
                 key={item.text}
@@ -139,7 +172,7 @@ export default function Navbar() {
                   primary={item.text}
                   primaryTypographyProps={{
                     align: "center",
-                    fontWeight: 500,
+                    fontWeight: item.text === "Most Selling Products" ? 600 : 500,
                   }}
                 />
               </ListItem>
