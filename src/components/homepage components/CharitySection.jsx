@@ -6,12 +6,8 @@ import {
   Card,
   CardContent,
 } from "@mui/material";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
-import Diversity3Icon from "@mui/icons-material/Diversity3";
 
 export default function CharitySection() {
-  const hoverColors = ["#f06292", "#4CAF50", "#3F51B5"];
   const portugalFlag =
     "https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg";
 
@@ -41,23 +37,16 @@ export default function CharitySection() {
         <Grid container spacing={4} sx={{ marginLeft: { md: "80px", xs: 0 } }}>
           {[
             {
-              icon: (
-                <VolunteerActivismIcon
-                  sx={{ fontSize: 40, color: "#d32f2f" }}
-                />
-              ),
               title: "Supporting Women",
               description:
                 "We empower underprivileged women through skills training and donations from every purchase.",
             },
             {
-              icon: <FavoriteIcon sx={{ fontSize: 40, color: "#e91e63" }} />,
               title: "Health & Wellness",
               description:
                 "We contribute to health camps and hygiene product distribution in rural areas.",
             },
             {
-              icon: <Diversity3Icon sx={{ fontSize: 40, color: "#1976d2" }} />,
               title: "Community Growth",
               description:
                 "A portion of our profits is reinvested into local education and skill development programs.",
@@ -86,7 +75,7 @@ export default function CharitySection() {
                     backgroundImage: `url(${portugalFlag})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
-                    opacity: 0.4, // 👈 Adjust this for transparency level
+                    opacity: 0.5, // 👈 Adjust this for transparency level
                     zIndex: 0,
                   },
                   "&:hover": {
@@ -99,16 +88,20 @@ export default function CharitySection() {
                   sx={{
                     position: "relative",
                     zIndex: 1,
-
                     borderRadius: 2,
                     p: 2,
                   }}
                 >
-                  {item.icon}
                   <Typography variant="h6" mt={2} fontWeight="bold">
                     {item.title}
                   </Typography>
-                  <Typography variant="body2" mt={1}>
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      fontWeight: 600,
+                    }}
+                    mt={1}
+                  >
                     {item.description}
                   </Typography>
                 </CardContent>

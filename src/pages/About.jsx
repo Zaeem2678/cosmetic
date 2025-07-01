@@ -8,15 +8,28 @@ export default function About() {
       <PageNavigation title="About Us" subheading="about us" />
       <CharitySection />
       {/* Closing Note */}
-      <Box sx={{ mt: 8 }}>
+      <Box
+        sx={{
+          mt: 4,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <Typography
           variant="body1"
           align="center"
           color="text.primary"
-          sx={{ fontStyle: "italic" }}
+          sx={{ fontStyle: "italic", width: { md: "840px", xs: "400px",padding:'10px' } }}
         >
-          Whether you’re looking for radiant skincare, bold makeup, or everyday
-          essentials, we’re here to make you feel confident in your own skin.
+          "We proudly sell premium cosmetic products across Europe, offering a
+          carefully curated selection designed to meet the highest standards of
+          quality, safety, and elegance. Our products are crafted using
+          ethically sourced ingredients and are trusted by customers in major
+          European countries for their effectiveness and luxury appeal. Whether
+          you're in Portugal, Germany, France, or beyond — Stella is your
+          destination for sophisticated beauty solutions delivered right to
+          your doorstep."
         </Typography>
       </Box>
     </>

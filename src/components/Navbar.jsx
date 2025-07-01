@@ -2,7 +2,6 @@ import { useState } from "react";
 import {
   AppBar,
   Toolbar,
-  Typography,
   Button,
   IconButton,
   Box,
@@ -11,9 +10,10 @@ import {
   ListItem,
   ListItemText,
   Divider,
+  Typography,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 
@@ -21,6 +21,7 @@ export default function Navbar() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const location = useLocation();
 
   const mainNavItems = [
     { text: "Home", path: "/" },
@@ -43,53 +44,69 @@ export default function Navbar() {
           color: "text.primary",
           px: 2,
           boxShadow: "none",
-          borderBottom: "none",
         }}
       >
-        <Toolbar sx={{ justifyContent: "space-between", alignItems: "center" }}>
-          {/* Logo - Left Side */}
+        <Toolbar sx={{ justifyContent: "space-between" }}>
+          {/* Logo */}
           <Box sx={{ flexShrink: 0 }}>
             <Link to="/" style={{ display: "flex", alignItems: "center" }}>
               <img
-                style={{ height: "70px", width: "70px", cursor: "pointer" }}
                 src="/logo.png"
                 alt="logo"
+                style={{ height: 70, width: 70, cursor: "pointer" }}
               />
             </Link>
           </Box>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Nav */}
           {!isMobile && (
             <>
-              {/* Center Navigation - Home, About, Contact */}
-              <Box sx={{ 
-                display: "flex", 
-                gap: 2,
-                position: "absolute",
-                left: "50%",
-                transform: "translateX(-50%)",
-              }}>
-                {mainNavItems.map((item) => (
-                  <Button
-                    key={item.text}
-                    component={Link}
-                    to={item.path}
-                    sx={{
-                      color: "text.primary",
-                      fontWeight: 500,
-                      textTransform: "none",
-                      "&:hover": {
-                        backgroundColor: "#E3F2FD",
-                        color: theme.palette.primary.main,
-                      },
-                    }}
-                  >
-                    {item.text}
-                  </Button>
-                ))}
+              {/* Centered Menu */}
+              <Box
+                sx={{
+                  display: "flex",
+                  gap: 3,
+                  position: "absolute",
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                }}
+              >
+                {mainNavItems.map((item) => {
+                  const isActive = location.pathname === item.path;
+                  return (
+                    <Box
+                      key={item.text}
+                      component={Link}
+                      to={item.path}
+                      sx={{
+                        position: "relative",
+                        color: "text.primary",
+                        textDecoration: "none",
+                        fontWeight: 500,
+                        fontSize: "1rem",
+                        paddingBottom: "4px",
+                        "&::after": {
+                          content: '""',
+                          position: "absolute",
+                          bottom: 0,
+                          left: 0,
+                          width: isActive ? "100%" : "0%",
+                          height: "2px",
+                          backgroundColor: "#1a1a1a",
+                          transition: "width 0.3s ease",
+                        },
+                        "&:hover::after": {
+                          width: "100%",
+                        },
+                      }}
+                    >
+                      {item.text}
+                    </Box>
+                  );
+                })}
               </Box>
 
-              {/* Right Side - Most Selling Products */}
+              {/* Right Button */}
               <Box sx={{ flexShrink: 0 }}>
                 <Button
                   component={Link}
@@ -116,18 +133,14 @@ export default function Navbar() {
 
           {/* Mobile Menu Icon */}
           {isMobile && (
-            <IconButton
-              edge="end"
-              onClick={() => setDrawerOpen(true)}
-              sx={{ color: "text.primary" }}
-            >
-              <MenuIcon />
+            <IconButton onClick={() => setDrawerOpen(true)}>
+              <MenuIcon sx={{ color: "text.primary" }} />
             </IconButton>
           )}
         </Toolbar>
       </AppBar>
 
-      {/* Drawer for Mobile */}
+      {/* Drawer Menu */}
       <Drawer
         anchor="right"
         open={drawerOpen}
@@ -140,7 +153,6 @@ export default function Navbar() {
             bgcolor: "#fff",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "start",
             pt: 3,
           }}
           role="presentation"
@@ -161,18 +173,18 @@ export default function Navbar() {
                 component={Link}
                 to={item.path}
                 sx={{
-                  color: "text.primary",
                   justifyContent: "center",
-                  "&:hover": {
-                    backgroundColor: "#f0f0f0",
-                  },
                 }}
               >
                 <ListItemText
                   primary={item.text}
                   primaryTypographyProps={{
                     align: "center",
-                    fontWeight: item.text === "Most Selling Products" ? 600 : 500,
+                    fontWeight:
+                      item.text === "Most Selling Products" ? 600 : 500,
+                    sx: {
+                      color: "#000", // plain black, no hover or underline
+                    },
                   }}
                 />
               </ListItem>

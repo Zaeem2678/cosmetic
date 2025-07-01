@@ -1,11 +1,4 @@
-import {
-  Box,
-  Typography,
-  Container,
-  Paper,
-  Grid,
-  IconButton,
-} from "@mui/material";
+import { Box, Typography, Container, Paper, Grid } from "@mui/material";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import PaymentIcon from "@mui/icons-material/Payment";
@@ -15,10 +8,22 @@ import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 export default function OrderInstructions() {
   return (
     <Box
-      sx={{ backgroundColor: "secondary.main", marginTop: 5, marginBottom: 2 }}
+      sx={{
+        backgroundColor: "secondary.main",
+        marginTop: 5,
+        marginBottom: 2,
+      }}
     >
       <Container maxWidth="md">
-        <Paper elevation={3} sx={{ p: 4, borderRadius: 3 }}>
+        <Paper
+          elevation={3}
+          sx={{
+            p: 4,
+            borderRadius: 3,
+            bgcolor: { xs: "secondary.main", md: "#fff" },
+            boxShadow: "none",
+          }}
+        >
           <Typography
             variant="h4"
             align="center"
