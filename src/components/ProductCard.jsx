@@ -1,92 +1,87 @@
 import {
   Card,
-  Button,
-  CardContent,
   CardMedia,
+  CardContent,
   Typography,
   Box,
+  Button,
 } from "@mui/material";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import ModalDialog from "../components/homepage components/ModalDialog";
 import { useState } from "react";
 import CustomButton from "../components/CustomButton";
+import ModalDialog from "../components/homepage components/ModalDialog";
 
 export default function ProductCard({ product }) {
   const [open, setOpen] = useState(false);
-  const [imageError, setImageError] = useState(false);
-  if (!product) return null;
   const fallbackImage =
     "https://thumb.ac-illust.com/b1/b170870007dfa419295d949814474ab2_t.jpeg";
+
   return (
     <>
       <Card
         sx={{
-          width: "100%", // Ensures full width within grid item
-          maxWidth: 350, // Fixed maximum width for consistency
-          height: 400, // Fixed height for uniform card size
+          width: 330,
+          borderRadius: "15px",
+          boxShadow: "0 10px 30px rgba(0,0,0,0.06)",
+          transition: "all 0.3s ease",
+          overflow: "hidden",
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          transition: "transform 0.3s, box-shadow 0.3s",
+          height: "100%",
           "&:hover": {
-            transform: "translateY(-5px)",
-            boxShadow: 6,
+            transform: "translateY(-6px)",
+            boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
           },
         }}
       >
         <CardMedia
           component="img"
-          image={imageError ? fallbackImage : product.image}
+          image={product.image || fallbackImage}
           alt={product.name}
-          onError={() => setImageError(true)}
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = fallbackImage;
+          }}
           sx={{
-            width: 350, // Fixed width to match maxWidth of Card
-            height: 200, // Fixed height for consistency
-            objectFit: "cover", // Ensures image fills space without distortion
-            backgroundColor: "#f5f5f5", // Light background in case image fails
-            aspectRatio: "4/3", // Enforces consistent image proportion
+            height: 220,
+            objectFit: "cover",
+            width: "100%",
+            backgroundColor: "#f5f5f5",
           }}
         />
         <CardContent
           sx={{
-            flexGrow: 1,
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
-            p: { xs: 2, sm: 3 }, // Responsive padding
+            flexGrow: 1,
+            p: 2,
           }}
         >
-          <Box>
-            <Typography
-              gutterBottom
-              variant="h6"
-              component="div"
-              sx={{
-                fontSize: { xs: "1.1rem", sm: "1.25rem" },
-                fontWeight: 600,
-                lineHeight: 1.3,
-                mb: 1,
-              }}
-            >
-              {product.name}
-            </Typography>
-            <Typography
-              variant="body2"
-              color="text.secondary"
-              sx={{
-                mb: 2,
-                display: "-webkit-box",
-                WebkitLineClamp: 3, // Show 3 lines instead of 2 for better description
-                WebkitBoxOrient: "vertical",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                minHeight: "60px", // Adjusted for 3 lines
-                lineHeight: 1.4,
-              }}
-            >
-              {product.description}
-            </Typography>
-          </Box>
+          <Typography
+            variant="h6"
+            fontWeight={600}
+            gutterBottom
+            sx={{ color: "#333", fontSize: "1.15rem" }}
+          >
+            {product.name}
+          </Typography>
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{
+              lineHeight: 1.6,
+              display: "-webkit-box",
+              WebkitLineClamp: 2,
+              WebkitBoxOrient: "vertical",
+              overflow: "hidden",
+              minHeight: "48px",
+              mb: 2,
+            }}
+          >
+            {product.description}
+          </Typography>
 
           <Box
             sx={{
@@ -94,7 +89,7 @@ export default function ProductCard({ product }) {
               justifyContent: "space-between",
               alignItems: "center",
               gap: 1,
-              mt: "auto", // Pushes buttons to bottom
+              mt: "auto",
             }}
           >
             <CustomButton
@@ -109,7 +104,7 @@ export default function ProductCard({ product }) {
             </CustomButton>
             <Button
               variant="outlined"
-              href="https://wa.me/923001234567"
+              href="https://wa.me/351920537449"
               target="_blank"
               rel="noopener noreferrer"
               sx={{

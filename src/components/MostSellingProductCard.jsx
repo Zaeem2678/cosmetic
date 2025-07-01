@@ -4,8 +4,7 @@ export default function MostSellingProductCard({ product }) {
   return (
     <Card
       sx={{
-        maxWidth: 330,
-        width: "100%",
+        width: 330,
         borderRadius: "15px",
         boxShadow: "0 10px 30px rgba(0,0,0,0.06)",
         transition: "all 0.3s ease",
@@ -19,7 +18,7 @@ export default function MostSellingProductCard({ product }) {
       <CardMedia
         component="img"
         image={product.image}
-        alt={product.name}
+        alt={product.productName}
         sx={{
           height: 220,
           objectFit: "cover",
@@ -27,35 +26,19 @@ export default function MostSellingProductCard({ product }) {
           backgroundColor: "#f5f5f5",
         }}
       />
-      <CardContent
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          flexGrow: 1,
-        }}
-      >
+      <CardContent>
         <Typography
           variant="h6"
           fontWeight={600}
-          gutterBottom
           sx={{ color: "#333", fontSize: "1.15rem" }}
         >
-          {product.name}
+          {product.productName}
         </Typography>
-        <Typography
-          variant="body2"
-          color="text.secondary"
-          sx={{
-            lineHeight: 1.6,
-            display: "-webkit-box",
-            WebkitLineClamp: 2,
-            WebkitBoxOrient: "vertical",
-            overflow: "hidden",
-            minHeight: "48px",
-          }}
-        >
-          {product.description}
+        <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
+          Quantity: {product.quantity}
+        </Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
+          Category: {product.categoryName}
         </Typography>
       </CardContent>
     </Card>

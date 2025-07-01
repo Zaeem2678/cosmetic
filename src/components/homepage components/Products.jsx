@@ -62,17 +62,8 @@ export default function Products() {
   }
 
   return (
-    <Container
-      maxWidth="lg"
-      sx={{
-        mt: 4,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        px: { xs: 2, sm: 3 }, // Better padding on mobile
-      }}
-    >
-      <Typography variant="h4" sx={{ mb: 4,fontWeight: 700  }}>
+    <Container sx={{ mt: 6, mb: 8 }}>
+      <Typography variant="h4" fontWeight={700} align="center" mb={4}>
         Our Products
       </Typography>
 
@@ -88,35 +79,34 @@ export default function Products() {
         {categories.map((cat) => (
           <CustomButton
             key={cat}
-            variant={selectedCategory === cat ? "contained" : "outlined"}
             onClick={() => handleCategoryClick(cat)}
+            sx={{
+              backgroundColor:
+                selectedCategory === cat ? "#5D4037" : "transparent",
+              color: selectedCategory === cat ? "#fff" : "inherit",
+              borderColor: "#5D4037",
+              "&:hover": {
+                backgroundColor:
+                  selectedCategory === cat ? "#4E342E" : "#f5f5f5",
+                borderColor: "#5D4037",
+              },
+            }}
+            variant="outlined"
           >
             {cat}
           </CustomButton>
         ))}
       </Box>
 
-      {/* Updated Grid with better spacing and alignment */}
-      <Grid
-        container
-        spacing={{ xs: 2, sm: 3, md: 4 }}
-        sx={{
-          width: "100%",
-          justifyContent: "center",
-          alignItems: "stretch", // Ensures equal height cards
-        }}
-      >
+      <Grid container spacing={4} justifyContent="center">
         {visibleProducts.map((product) => (
           <Grid
             item
+            key={product._id}
             xs={12}
             sm={6}
             md={4}
-            key={product._id}
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-            }}
+            sx={{ display: "flex", justifyContent: "center" }}
           >
             <ProductCard product={product} />
           </Grid>
@@ -124,10 +114,8 @@ export default function Products() {
       </Grid>
 
       {visibleCount < filteredProducts.length && (
-        <Box sx={{ mt: 4 }}>
-          <CustomButton variant="outlined" onClick={handleLoadMore}>
-            Load More
-          </CustomButton>
+        <Box mt={4} display="flex" justifyContent="center">
+          <CustomButton onClick={handleLoadMore}>Load More</CustomButton>
         </Box>
       )}
     </Container>

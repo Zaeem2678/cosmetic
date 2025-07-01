@@ -26,19 +26,6 @@ export default function ModalDialog({ product, open, onClose }) {
         <Typography variant="body1" gutterBottom>
           {product.description}
         </Typography>
-
-        <Box mt={2}>
-          <Typography variant="subtitle2">
-            <strong>Price:</strong> ${product.price}
-          </Typography>
-          <Typography variant="subtitle2">
-            <strong>Category:</strong> {product.categoryId?.name || "N/A"}
-          </Typography>
-          <Typography variant="subtitle2">
-            <strong>Added on:</strong>{" "}
-            {new Date(product.createdAt).toLocaleDateString()}
-          </Typography>
-        </Box>
       </DialogContent>
 
       <DialogActions>

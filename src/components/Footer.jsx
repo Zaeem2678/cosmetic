@@ -4,76 +4,60 @@ export default function Footer() {
   return (
     <Box
       sx={{
-        bgcolor: "#0b1a2c", // darker blue tone
+        bgcolor: "#0b1a2c",
         color: "#ffffff",
+        pt: 5,
+        pb: 3,
         mt: 10,
-        pt: 6,
-        pb: 4,
+        fontSize: "0.9rem",
       }}
     >
       <Container maxWidth="lg">
-        <Grid container spacing={5}>
+        <Grid container spacing={4}>
           {/* Brand Info */}
           <Grid item xs={12} sm={6} md={4}>
             <Typography
-              variant="h5"
-              gutterBottom
-              sx={{ fontWeight: "bold", color: "#fff" }}
+              variant="h6"
+              sx={{ fontWeight: "bold", mb: 1, color: "#fff" }}
             >
               Stella
             </Typography>
             <Typography
               variant="body2"
-              sx={{ lineHeight: 1.8, color: "#c0c0c0" }}
+              sx={{ color: "#c0c0c0", width: { md: "700px", xs: "none" } }}
             >
-              Discover premium cosmetics to elevate your daily beauty routine.
-              Quality, luxury, and care — all in one place.
-              <br />
-              Our curated collection features high-quality products sourced with
-              care and effectiveness.
+              Discover premium cosmetics to elevate your beauty routine. Our
+              curated collection brings quality and care in every product.
             </Typography>
           </Grid>
 
           {/* Quick Links */}
-          <Grid item xs={12} sm={6} md={4}>
-            <Typography variant="h6" gutterBottom sx={{ color: "#fff" }}>
+          <Grid item xs={6} sm={3} md={2}>
+            <Typography variant="h6" sx={{ mb: 1, color: "#fff" }}>
               Quick Links
             </Typography>
-            <Link href="/" underline="hover" display="block" sx={linkStyle}>
+            <Link href="/" underline="hover" sx={linkStyle}>
               Home
             </Link>
-            <Link
-              href="/about"
-              underline="hover"
-              display="block"
-              sx={linkStyle}
-            >
+            <Link href="/about" underline="hover" sx={linkStyle}>
               About
             </Link>
-            <Link
-              href="/contact"
-              underline="hover"
-              display="block"
-              sx={linkStyle}
-            >
+            <Link href="/contact" underline="hover" sx={linkStyle}>
               Contact
             </Link>
           </Grid>
 
           {/* Contact Info */}
-          <Grid item xs={12} sm={12} md={4}>
-            <Typography variant="h6" gutterBottom sx={{ color: "#fff" }}>
+          <Grid item xs={6} sm={3} md={3}>
+            <Typography variant="h6" sx={{ mb: 1, color: "#fff" }}>
               Contact
             </Typography>
-            <Typography
-              variant="body2"
-              sx={{ color: "#c0c0c0", lineHeight: 1.8 }}
-            >
+            <Typography variant="body2" sx={infoStyle}>
               WhatsApp: +351 920 537 449
               <br />
               Email: support@cosmeticsstore.com
               <br />
-              Location: PORTO, PORTUGAL{" "}
+              Location: Porto, Portugal{" "}
               <img
                 src="https://flagcdn.com/w40/pt.png"
                 alt="Portugal Flag"
@@ -88,14 +72,12 @@ export default function Footer() {
           </Grid>
         </Grid>
 
-        {/* Divider */}
-        <Divider sx={{ my: 4, borderColor: "rgba(255,255,255,0.1)" }} />
+        <Divider sx={{ my: 3, borderColor: "rgba(255,255,255,0.1)" }} />
 
-        {/* Footer Bottom */}
         <Typography
           variant="body2"
           align="center"
-          sx={{ fontSize: "0.875rem", opacity: 0.6 }}
+          sx={{ fontSize: "0.8rem", color: "#aaa" }}
         >
           © {new Date().getFullYear()} Stella. All rights reserved.
         </Typography>
@@ -104,12 +86,18 @@ export default function Footer() {
   );
 }
 
-// Style object for link hover effect
+// Styles
 const linkStyle = {
+  display: "block",
   color: "#c0c0c0",
   mb: 1,
-  transition: "color 0.3s",
+  fontSize: "0.875rem",
   "&:hover": {
     color: "#ffffff",
   },
+};
+
+const infoStyle = {
+  color: "#c0c0c0",
+  lineHeight: 1.6,
 };

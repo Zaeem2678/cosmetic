@@ -1,21 +1,14 @@
 import { useState } from "react";
 import axios from "axios";
-import {
-  Box,
-  Typography,
-  Divider,
-  TextField,
-  Button,
-} from "@mui/material";
-
-
+import { Box, Typography, Divider, TextField, Button } from "@mui/material";
+import CustomButton from "../components/CustomButton";
 import PageNavigation from "../components/pagenav/PageNavigation";
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
-const MySwal = withReactContent(Swal)
+const MySwal = withReactContent(Swal);
 export default function Contact() {
-  const [ isSubmitted, setIsSubmitted ] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -25,40 +18,35 @@ export default function Contact() {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-
- 
   };
 
   const handleSubmit = async () => {
-
-     
     try {
       setIsSubmitted(true);
-      const res = await axios.post("http://localhost:4000/api/contactUs/mailingService", formData);
+      const res = await axios.post(
+        "http://localhost:4000/api/contactUs/mailingService",
+        formData
+      );
       //alert(res.data.message);
-       MySwal.fire({
-        title:'Contact Us',
-        text:res?.data?.message || "Thanks for contacting us!!",
-        icon: 'success', // Can be 'success', 'error', 'warning', 'info', or 'question'
-        confirmButtonText: 'Okay',
+      MySwal.fire({
+        title: "Contact Us",
+        text: res?.data?.message || "Thanks for contacting us!!",
+        icon: "success", // Can be 'success', 'error', 'warning', 'info', or 'question'
+        confirmButtonText: "Okay",
       });
       setIsSubmitted(false);
       setFormData({ name: "", email: "", subject: "", message: "" }); // reset form
     } catch (err) {
-     setIsSubmitted(false);
-     MySwal.fire({
-        title:'Contact Us',
-        text:err.response?.data?.message || "Failed to send message",
-        icon: 'error', // Can be 'success', 'error', 'warning', 'info', or 'question'
-        confirmButtonText: 'Try Again',
+      setIsSubmitted(false);
+      MySwal.fire({
+        title: "Contact Us",
+        text: err.response?.data?.message || "Failed to send message",
+        icon: "error", // Can be 'success', 'error', 'warning', 'info', or 'question'
+        confirmButtonText: "Try Again",
       });
       //alert(err.response?.data?.message || "Failed to send message");
     }
   };
-  
-
-
-
 
   return (
     <>
@@ -104,7 +92,6 @@ export default function Contact() {
           <Box sx={{ textAlign: "center" }}>
             <Typography variant="h6">Phone:</Typography>
             <Typography color="text.secondary">+1235 2355 98</Typography>
-
           </Box>
 
           {/* Divider */}
@@ -197,15 +184,13 @@ export default function Contact() {
           />
 
           {/* Send Button */}
-          <Button
-            variant="contained"
-            sx={{ mt: 2, bgcolor: "primary.main" }}
+          <CustomButton
+            sx={{ mt: 2 }}
             onClick={handleSubmit}
             disabled={isSubmitted}
           >
-            {isSubmitted?'Sending Message...':'Send Message'}
-            
-          </Button>
+            {isSubmitted ? "Sending Message..." : "Send Message"}
+          </CustomButton>
         </Box>
       </Box>
     </>
