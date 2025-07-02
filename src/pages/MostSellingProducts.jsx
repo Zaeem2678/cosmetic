@@ -42,7 +42,15 @@ export default function MostSellingProducts() {
 
   return (
     <Container sx={{ mt: 6, mb: 8 }}>
-      <Typography variant="h4" fontWeight={700} align="center" mb={4}>
+      <Typography
+        variant="h4"
+        fontWeight={700}
+        align="center"
+        sx={{
+          textTransform: "uppercase",
+        }}
+        mb={4}
+      >
         Most Selling Products 🔥
       </Typography>
 

@@ -16,6 +16,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { Link, useLocation } from "react-router-dom";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
+import CustomButton from "./CustomButton";
 
 export default function Navbar() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -108,25 +109,11 @@ export default function Navbar() {
 
               {/* Right Button */}
               <Box sx={{ flexShrink: 0 }}>
-                <Button
-                  component={Link}
-                  to="/most-selling"
-                  sx={{
-                    color: "text.primary",
-                    fontWeight: 600,
-                    textTransform: "none",
-                    bgcolor: "rgba(251, 165, 4, 0.1)",
-                    border: "1px solid #FBA504",
-                    borderRadius: "8px",
-                    px: 2,
-                    "&:hover": {
-                      backgroundColor: "#FBA504",
-                      color: "#fff",
-                    },
-                  }}
-                >
-                  Most Selling Products
-                </Button>
+                <CustomButton sx={{
+                  padding:'10px'
+                }} component={Link} to="/most-selling">
+                  Most Selling Items
+                </CustomButton>
               </Box>
             </>
           )}

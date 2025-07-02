@@ -63,8 +63,16 @@ export default function Products() {
 
   return (
     <Container sx={{ mt: 6, mb: 8 }}>
-      <Typography variant="h4" fontWeight={700} align="center" mb={4}>
-        Our Products
+      <Typography
+        variant="h4"
+        sx={{
+          textTransform: "uppercase",
+        }}
+        fontWeight={700}
+        align="center"
+        mb={4}
+      >
+        Featured Products
       </Typography>
 
       <Box
@@ -82,13 +90,13 @@ export default function Products() {
             onClick={() => handleCategoryClick(cat)}
             sx={{
               backgroundColor:
-                selectedCategory === cat ? "#5D4037" : "transparent",
+                selectedCategory === cat ? "#E4B015" : "transparent",
               color: selectedCategory === cat ? "#fff" : "inherit",
-              borderColor: "#5D4037",
+              borderColor: "#E4B015",
               "&:hover": {
                 backgroundColor:
-                  selectedCategory === cat ? "#4E342E" : "#f5f5f5",
-                borderColor: "#5D4037",
+                  selectedCategory === cat ? "#E4B015" : "#f5f5f5",
+                borderColor: "#E4B015",
               },
             }}
             variant="outlined"

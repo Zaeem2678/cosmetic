@@ -5,7 +5,7 @@ export default function MostSellingProductCard({ product }) {
     <Card
       sx={{
         width: 330,
-        borderRadius: "15px",
+        borderRadius: "3px",
         boxShadow: "0 10px 30px rgba(0,0,0,0.06)",
         transition: "all 0.3s ease",
         overflow: "hidden",

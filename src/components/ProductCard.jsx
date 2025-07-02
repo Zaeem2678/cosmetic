@@ -21,8 +21,8 @@ export default function ProductCard({ product }) {
       <Card
         sx={{
           width: 330,
-          borderRadius: "15px",
-          boxShadow: "0 10px 30px rgba(0,0,0,0.06)",
+          borderRadius: "2px",
+          boxShadow:'none',
           transition: "all 0.3s ease",
           overflow: "hidden",
           display: "flex",

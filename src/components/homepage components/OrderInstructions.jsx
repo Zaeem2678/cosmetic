@@ -20,7 +20,7 @@ export default function OrderInstructions() {
           sx={{
             p: 4,
             borderRadius: 3,
-            bgcolor: { xs: "secondary.main", md: "#fff" },
+            bgcolor: { xs: "secondary.main", md: "#E3DEDA" },
             boxShadow: "none",
           }}
         >

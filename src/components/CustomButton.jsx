@@ -4,10 +4,10 @@ const CustomButton = ({ children, sx = {}, ...props }) => {
   return (
     <Button
       sx={{
-        backgroundColor: "#D2B48C", // light brown
-        color: "#FFFFFF", // white text
+        backgroundColor: "#E4B015", // light brown
+        color: "black", // white text
         "&:hover": {
-          backgroundColor: "#8B4513", // dark brown on hover
+          backgroundColor: "#fff", // dark brown on hover
         },
         ...sx, // allow runtime style overrides
       }}
