@@ -28,6 +28,7 @@ export default function OrderInstructions() {
             variant="h4"
             align="center"
             color="#1a1a1a"
+            fontSize={25}
             gutterBottom
             sx={{
               fontWeight: 700,

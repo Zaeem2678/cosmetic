@@ -52,9 +52,9 @@ export default function Navbar() {
           <Box sx={{ flexShrink: 0 }}>
             <Link to="/" style={{ display: "flex", alignItems: "center" }}>
               <img
-                src="/logo.png"
+                src="/A.png"
                 alt="logo"
-                style={{ height: 70, width: 70, cursor: "pointer" }}
+                style={{ height: 50, width: 100, cursor: "pointer" }}
               />
             </Link>
           </Box>
@@ -109,9 +109,13 @@ export default function Navbar() {
 
               {/* Right Button */}
               <Box sx={{ flexShrink: 0 }}>
-                <CustomButton sx={{
-                  padding:'10px'
-                }} component={Link} to="/most-selling">
+                <CustomButton
+                  sx={{
+                    padding: "10px",
+                  }}
+                  component={Link}
+                  to="/most-selling"
+                >
                   Most Selling Items
                 </CustomButton>
               </Box>

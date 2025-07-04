@@ -6,8 +6,9 @@ export default function MostSellingProductCard({ product }) {
       sx={{
         width: 330,
         borderRadius: "3px",
-        boxShadow: "0 10px 30px rgba(0,0,0,0.06)",
+        border:'none',
         transition: "all 0.3s ease",
+        boxShadow:'none',
         overflow: "hidden",
         "&:hover": {
           transform: "translateY(-6px)",
@@ -35,7 +36,7 @@ export default function MostSellingProductCard({ product }) {
           {product.productName}
         </Typography>
         <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
-          Quantity: {product.quantity}
+          Quantity Sold: {product.quantity}
         </Typography>
         <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
           Category: {product.categoryName}

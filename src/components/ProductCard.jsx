@@ -22,7 +22,7 @@ export default function ProductCard({ product }) {
         sx={{
           width: 330,
           borderRadius: "2px",
-          boxShadow:'none',
+          boxShadow: "none",
           transition: "all 0.3s ease",
           overflow: "hidden",
           display: "flex",
@@ -73,11 +73,11 @@ export default function ProductCard({ product }) {
             sx={{
               lineHeight: 1.6,
               display: "-webkit-box",
-              WebkitLineClamp: 2,
+              WebkitLineClamp: 3, // Show 3 lines instead of 2
               WebkitBoxOrient: "vertical",
               overflow: "hidden",
-              minHeight: "48px",
-              mb: 2,
+              textOverflow: "ellipsis",
+              minHeight: "72px", // Adjust for consistent height
             }}
           >
             {product.description}
@@ -89,7 +89,7 @@ export default function ProductCard({ product }) {
               justifyContent: "space-between",
               alignItems: "center",
               gap: 1,
-              mt: "auto",
+              marginTop: 0,
             }}
           >
             <CustomButton

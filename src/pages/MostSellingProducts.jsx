@@ -45,6 +45,7 @@ export default function MostSellingProducts() {
       <Typography
         variant="h4"
         fontWeight={700}
+        fontSize={25}
         align="center"
         sx={{
           textTransform: "uppercase",

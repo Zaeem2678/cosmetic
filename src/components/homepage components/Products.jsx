@@ -4,6 +4,8 @@ import {
   Typography,
   Box,
   CircularProgress,
+  Menu,
+  MenuItem,
 } from "@mui/material";
 import { useState, useEffect } from "react";
 import ProductCard from "../../components/ProductCard";
@@ -12,6 +14,7 @@ import { getProducts } from "../../api/productAPI";
 import CustomButton from "../../components/CustomButton";
 
 const ITEMS_PER_LOAD = 6;
+const MAX_CATEGORIES_VISIBLE = 6;
 
 export default function Products() {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -19,6 +22,7 @@ export default function Products() {
   const [products, setProducts] = useState([]);
   const [visibleCount, setVisibleCount] = useState(ITEMS_PER_LOAD);
   const [loading, setLoading] = useState(true);
+  const [showAllCategories, setShowAllCategories] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -70,6 +74,7 @@ export default function Products() {
         }}
         fontWeight={700}
         align="center"
+        fontSize={25}
         mb={4}
       >
         Featured Products
@@ -84,7 +89,10 @@ export default function Products() {
           justifyContent: "center",
         }}
       >
-        {categories.map((cat) => (
+        {(showAllCategories
+          ? categories
+          : categories.slice(0, MAX_CATEGORIES_VISIBLE)
+        ).map((cat) => (
           <CustomButton
             key={cat}
             onClick={() => handleCategoryClick(cat)}
@@ -104,27 +112,53 @@ export default function Products() {
             {cat}
           </CustomButton>
         ))}
+
+        {categories.length > MAX_CATEGORIES_VISIBLE && (
+          <CustomButton
+            onClick={() => setShowAllCategories((prev) => !prev)}
+            variant="outlined"
+            sx={{
+              backgroundColor: "#fff",
+              "&:hover": {
+                backgroundColor: "#f5f5f5",
+                borderColor: "#E4B015",
+              },
+            }}
+          >
+            {showAllCategories ? "Show Less" : "..."}
+          </CustomButton>
+        )}
       </Box>
 
-      <Grid container spacing={4} justifyContent="center">
-        {visibleProducts.map((product) => (
-          <Grid
-            item
-            key={product._id}
-            xs={12}
-            sm={6}
-            md={4}
-            sx={{ display: "flex", justifyContent: "center" }}
-          >
-            <ProductCard product={product} />
-          </Grid>
-        ))}
-      </Grid>
-
-      {visibleCount < filteredProducts.length && (
-        <Box mt={4} display="flex" justifyContent="center">
-          <CustomButton onClick={handleLoadMore}>Load More</CustomButton>
+      {filteredProducts.length === 0 ? (
+        <Box mt={6} textAlign="center">
+          <Typography variant="h6" color="text.secondary">
+            Nothing to show here.
+          </Typography>
         </Box>
+      ) : (
+        <>
+          <Grid container spacing={4} justifyContent="center">
+            {visibleProducts.map((product) => (
+              <Grid
+                item
+                key={product._id}
+                xs={12}
+                sm={6}
+                md={4}
+                sx={{ display: "flex", justifyContent: "center" }}
+              >
+                <ProductCard product={product} />
+              </Grid>
+            ))}
+          </Grid>
+
+          {visibleCount < filteredProducts.length && (
+            <Box mt={4} display="flex" justifyContent="center">
+              <CustomButton onClick={handleLoadMore}>Load More</CustomButton>
+            </Box>
+          )}
+        </>
       )}
     </Container>
   );

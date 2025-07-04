@@ -18,6 +18,7 @@ export default function CharitySection() {
           variant="h4"
           sx={{ marginLeft: { xs: 0, md: "80px" } }}
           align="center"
+          fontSize={25}
           fontWeight="bold"
           gutterBottom
         >
