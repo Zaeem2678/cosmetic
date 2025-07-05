@@ -74,9 +74,25 @@ export default function OrderInstructions() {
                 <WhatsAppIcon color="success" />
                 <Typography variant="body1">
                   WhatsApp us at:
-                  <strong style={{ color: "#25D366", marginLeft: 5 }}>
+                  <a
+                    href="https://wa.me/351920537449"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      color: "#25D366",
+                      marginLeft: 5,
+                      fontWeight: 600,
+                      textDecoration: "none",
+                    }}
+                    onMouseEnter={(e) =>
+                      (e.target.style.textDecoration = "underline")
+                    }
+                    onMouseLeave={(e) =>
+                      (e.target.style.textDecoration = "none")
+                    }
+                  >
                     +351 920 537 449
-                  </strong>
+                  </a>
                 </Typography>
               </Box>
             </Grid>

@@ -61,15 +61,36 @@ export default function MostSellingProductCard({ product }) {
             p: 2,
           }}
         >
-          <Typography
-            variant="h6"
-            fontWeight={600}
-            gutterBottom
-            sx={{ color: "#333", fontSize: "1.15rem" }}
+          {/* Title + Price Row */}
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              mb: 1,
+            }}
           >
-            {product.productName}
-          </Typography>
+            <Typography
+              variant="h6"
+              fontWeight={600}
+              sx={{ color: "#333", fontSize: "1.15rem", mr: 1, flex: 1 }}
+            >
+              {product.productName}
+            </Typography>
+            <Typography
+              variant="subtitle1"
+              sx={{
+                fontWeight: 700,
+                color: "primary.main",
+                fontSize: "1rem",
+                whiteSpace: "nowrap",
+              }}
+            >
+              €{product.price || "0.00"}
+            </Typography>
+          </Box>
 
+          {/* Description */}
           <Typography
             variant="body2"
             color="text.secondary"
@@ -80,19 +101,20 @@ export default function MostSellingProductCard({ product }) {
               WebkitBoxOrient: "vertical",
               overflow: "hidden",
               textOverflow: "ellipsis",
-              minHeight: "72px",
+              minHeight: "10px",
             }}
           >
             {product.description}
           </Typography>
 
+          {/* Actions */}
           <Box
             sx={{
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
               gap: 1,
-              marginTop: 0,
+              mt: 2,
             }}
           >
             <CustomButton

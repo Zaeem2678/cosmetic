@@ -59,44 +59,67 @@ export default function ProductCard({ product }) {
             p: 2,
           }}
         >
-          <Typography
-            variant="h6"
-            fontWeight={600}
-            gutterBottom
-            sx={{ color: "#333", fontSize: "1.15rem" }}
+          {/* Title + Price Row */}
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              mb: 1,
+            }}
           >
-            {product.name}
-          </Typography>
+            <Typography
+              variant="h6"
+              fontWeight={600}
+              sx={{ color: "#333", fontSize: "1.15rem", mr: 1, flex: 1 }}
+            >
+              {product.name}
+            </Typography>
+            <Typography
+              variant="subtitle1"
+              sx={{
+                fontWeight: 700,
+                color: "primary.main",
+                fontSize: "1rem",
+                whiteSpace: "nowrap",
+              }}
+            >
+              €{product.price || "0.00"}
+            </Typography>
+          </Box>
+
+          {/* Description */}
           <Typography
             variant="body2"
             color="text.secondary"
             sx={{
               lineHeight: 1.6,
               display: "-webkit-box",
-              WebkitLineClamp: 3, // Show 3 lines instead of 2
+              WebkitLineClamp: 3,
               WebkitBoxOrient: "vertical",
               overflow: "hidden",
               textOverflow: "ellipsis",
-              minHeight: "72px", // Adjust for consistent height
+              minHeight: "10px",
             }}
           >
             {product.description}
           </Typography>
 
+          {/* Action Buttons */}
           <Box
             sx={{
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
               gap: 1,
-              marginTop: 0,
+              mt: 2,
             }}
           >
             <CustomButton
               variant="text"
               onClick={() => setOpen(true)}
               sx={{
-                fontSize: { xs: "0.875rem", sm: "1rem" ,md:13},
+                fontSize: { xs: "0.875rem", sm: "1rem", md: 13 },
                 px: { xs: 1, sm: 2 },
               }}
             >

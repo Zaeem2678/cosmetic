@@ -5,11 +5,33 @@ import {
   Grid,
   Card,
   CardContent,
+  CardMedia,
 } from "@mui/material";
 
 export default function CharitySection() {
-  const portugalFlag =
-    "https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg";
+  const cardItems = [
+    {
+      title: "Supporting Women",
+      description:
+        "We empower underprivileged women through skills training and donations from every purchase.",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg", // Replace with your actual image
+    },
+    {
+      title: "Health & Wellness",
+      description:
+        "We contribute to health camps and hygiene product distribution in rural areas.",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg", // Replace with your actual image
+    },
+    {
+      title: "Community Growth",
+      description:
+        "A portion of our profits is reinvested into local education and skill development programs.",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg", // Replace with your actual image
+    },
+  ];
 
   return (
     <Box sx={{ bgcolor: "secondary.main", py: 3, mt: 6 }}>
@@ -36,72 +58,34 @@ export default function CharitySection() {
         </Typography>
 
         <Grid container spacing={4} sx={{ marginLeft: { md: "80px", xs: 0 } }}>
-          {[
-            {
-              title: "Supporting Women",
-              description:
-                "We empower underprivileged women through skills training and donations from every purchase.",
-            },
-            {
-              title: "Health & Wellness",
-              description:
-                "We contribute to health camps and hygiene product distribution in rural areas.",
-            },
-            {
-              title: "Community Growth",
-              description:
-                "A portion of our profits is reinvested into local education and skill development programs.",
-            },
-          ].map((item, index) => (
+          {cardItems.map((item, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
               <Card
                 sx={{
-                  position: "relative",
-                  overflow: "hidden",
-                  display: "flex",
-                  textAlign: "center",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  py: 4,
                   width: { md: "320px", xs: "100%" },
-                  height: "200px",
+                  height: "100%",
+                  boxShadow: 0.00001,
                   transition: "all 0.4s ease",
-                  "&::before": {
-                    content: '""',
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    width: "100%",
-                    height: "100%",
-                    backgroundImage: `url(${portugalFlag})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    opacity: 0.5, // 👈 Adjust this for transparency level
-                    zIndex: 0,
-                  },
                   "&:hover": {
                     transform: "translateY(-5px)",
                     boxShadow: 6,
                   },
                 }}
               >
-                <CardContent
-                  sx={{
-                    position: "relative",
-                    zIndex: 1,
-                    borderRadius: 2,
-                    p: 2,
-                  }}
-                >
-                  <Typography variant="h6" mt={2} fontWeight="bold">
+                <CardMedia
+                  component="img"
+                  height="180"
+                  image={item.image}
+                  alt={item.title}
+                />
+                <CardContent sx={{ textAlign: "center" }}>
+                  <Typography variant="h6" fontWeight="bold" gutterBottom>
                     {item.title}
                   </Typography>
                   <Typography
                     variant="body2"
-                    sx={{
-                      fontWeight: 600,
-                    }}
-                    mt={1}
+                    sx={{ fontWeight: 600 }}
+                    color="text.secondary"
                   >
                     {item.description}
                   </Typography>

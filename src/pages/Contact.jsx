@@ -91,7 +91,7 @@ export default function Contact() {
           {/* Phone Section */}
           <Box sx={{ textAlign: "center" }}>
             <Typography variant="h6">Phone:</Typography>
-            <Typography color="text.secondary">+1235 2355 98</Typography>
+            <Typography color="text.secondary">+351 920 537 449</Typography>
           </Box>
 
           {/* Divider */}

@@ -11,16 +11,29 @@ import {
 export default function ModalDialog({ product, open, onClose }) {
   if (!product) return null;
 
+  const title = product.productName || product.name || "Product Details";
+  const image = product.image;
+  const description = product.description;
+  const price = product.price;
+
   return (
     <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
-      <DialogTitle>{product.name}</DialogTitle>
+      <DialogTitle
+        sx={{
+          fontWeight: "bold",
+          fontSize: "1.25rem",
+          color: "#222",
+        }}
+      >
+        {title}
+      </DialogTitle>
 
       <DialogContent dividers>
         <Box display="flex" flexDirection="column" gap={2}>
-          {product.image && (
+          {image && (
             <img
-              src={product.image}
-              alt={product.name}
+              src={image}
+              alt={title}
               style={{
                 width: "100%",
                 height: "auto",
@@ -29,26 +42,26 @@ export default function ModalDialog({ product, open, onClose }) {
             />
           )}
 
-          {product.description && (
+          {description && (
             <Typography
               variant="body1"
               sx={{
-                whiteSpace: "pre-line", // keeps line breaks if present
-                wordBreak: "break-word", // ensures long words wrap
-                textAlign: "justify", // optional: aligns both sides
+                whiteSpace: "pre-line",
+                wordBreak: "break-word",
+                textAlign: "justify",
               }}
             >
-              {product.description}
+              {description}
             </Typography>
           )}
 
-          {product.price && (
+          {price && (
             <Typography
               variant="subtitle1"
               color="text.secondary"
               sx={{ mt: 1 }}
             >
-              Price: €{product.price}
+              Price: €{price}
             </Typography>
           )}
         </Box>
