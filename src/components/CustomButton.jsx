@@ -6,6 +6,7 @@ const CustomButton = ({ children, sx = {}, ...props }) => {
       sx={{
         backgroundColor: "#E4B015", // light brown
         color: "black", // white text
+        fontSize: 12,
         "&:hover": {
           backgroundColor: "#fff", // dark brown on hover
         },

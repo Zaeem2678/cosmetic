@@ -24,6 +24,7 @@ export default function MostSellingProducts() {
           "http://localhost:4000/api/mostSalingProdoct/getTopMostSalingProduct_User"
         );
         setProducts(res.data.mostSalingProducts || []);
+        console.log(res.data.mostSalingProducts);
       } catch (error) {
         console.error("Failed to fetch most selling products:", error);
       } finally {
